@@ -3,12 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Map from GeoJSON using Mapbox GL JS</title>
+    <title>Water Sources in Sweden</title>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
         #map {
-            height: 600px;
+            height: 580px;
             width: 100%;
         }
     </style>
@@ -16,44 +17,11 @@
 
 <body>
     <div id="map"></div>
+    <!-- <input type="text" id="search" placeholder="Enter a location"> -->
+    <!-- <button id="locate-button">Locate Me</button> -->
 
-    <script>
-        mapboxgl.accessToken = 'pk.eyJ1Ijoic2FraWxjb2RlcmdlbyIsImEiOiJjbGs0YmFyY2MwYnRhM2dyeXRjMXl1bjM1In0.VJhsnxZvt7hYIdPOhPy4Cg';
-
-        var map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [16, 62],
-            zoom: 8,
-            zoomSnap: 0.5,
-        });
-
-
-        map.on('load', function () {
-            map.loadImage('assets/images/water-32.png', function (error, wdicon) {
-                if (error) throw error;
-
-                map.addImage('water-drop', wdicon);
-
-                map.addSource('my-data', {
-                    type: 'geojson',
-                    data: 'assets/data/water_sources.geojson'
-                });
-
-                map.addLayer({
-                    id: 'my-layer',
-                    type: 'symbol',
-                    source: 'my-data',
-                    layout: {
-                        'icon-image': 'water-drop',
-                        'icon-size': 0.5
-                    }
-                });
-            });
-        });
-
-    
-    </script>
+    <script src="assets/js/user-location.js"></script>
+    <script src="assets/js/index.js"></script>
 </body>
 
 </html>
